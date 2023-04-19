@@ -1,74 +1,53 @@
-//for printing the state
+#include <stdio.h>
+#include <stdlib.h>
+#include "Linkedlist.h"
+#include "StateMachine.h"
 
-#include<stdio.h>
-#include<stdlib.h>
-
-typedef enum{  //setting state
-    state_1,
-    state_2,
-    state_3,
-    state_4,
-}state;
-
-typedef enum{  //setting events
-    no_event,
-    event_1,
-    event_2,
-    event_3,
-    event_4,
-}event;
-
-typedef struct{  //setting up a state machine
-  state currState;
-}StateMachine;
-
-
-//Processing state functions
-extern void InitState(StateMachine*);
-extern void FirstState(StateMachine*, event);
-extern void SecondState(StateMachine*, event);
-extern void ProcEvent(StateMachine*, event);
-
-void InitState(StateMachine* a)
-{
-   a->currState = state_1;
-}
-
-void FirstState(StateMachine* a,event e)
-{
-   if(e == event_1)
-   {
-      a->currState = state_2;
-   }
-}
-
-void SecondState(StateMachine* a,event e)
-{
-   if(e == event_2)
-   {
-      a->currState = state_3;
-   }
-}
-
-void ProcEvent(StateMachine* a, event e)
-{
-  switch(a->currState){
-      case state_1:
-        SecondState(a, e);
-      break;
-
-      case state_2:
-        ThirdState(a, e);
-      break;
-}
-}
+int main() {
     
+    enum State { NO_STATE = 0, STATE_1 = 1, STATE_2 = 2, STATE_3 = 3, STATE_4 = 4 } state;
+  
+    // set the state based on the size of the linked list
+    if (size <= 0) {
+        state = NO_STATE;
+    }
+    else if (size == 1) {
+        state = STATE_1;
+    }
+    else if(size == 2){
+        state = STATE_2;
+    }
+     else if(size == 3){
+        state = STATE_3;
+    }
+     else if(size == 4){
+        state = STATE_4;
+    }
+    else
+    {
+        printf("State is more than 4!");
+    }
 
-
-int main(int argc, char** argv) {
-
-    StateMachine sm;
-    ProcEvent(&sm, event_1);
-
+    // print the size of the state
+    switch (state) {
+        case NO_STATE:
+            printf("No states available sorry:%d",size);
+            break;
+        case STATE_1:
+            printf(" State is :%d",size);
+            break;
+        case STATE_2:
+             printf("State is:%d",size);
+            break;
+        case STATE_3:
+             printf("State is:%d",size);
+            break;
+        case STATE_4:
+           printf("State is:%d",size);
+           break;
+        default:
+           printf("No state avaialble");
+           break;
+    }
     return 0;
 }
